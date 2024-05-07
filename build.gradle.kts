@@ -1,3 +1,5 @@
+import java.util.*
+
 plugins {
     kotlin("jvm") version "1.8.0"
     id("org.jetbrains.kotlinx.dataframe") version "0.13.1"
@@ -18,13 +20,17 @@ dependencies {
     testImplementation(kotlin("test"))
 }
 
+
+val props = Properties()
+file("local.properties").inputStream().use { props.load(it) }
+
 dataframes {
     schema {
         data = "jdbc:mariadb://localhost:3307/imdb"
         name = "org.jetbrains.kotlinx.dataframe.examples.jdbc.Actors"
         jdbcOptions {
-            user = "root"
-            password = "pass"
+            user = props.getProperty("db.user")
+            password = props.getProperty("db.password")
             tableName = "actors"
         }
     }
@@ -32,8 +38,8 @@ dataframes {
         data = "jdbc:mariadb://localhost:3307/imdb"
         name = "org.jetbrains.kotlinx.dataframe.examples.jdbc.TarantinoFilms"
         jdbcOptions {
-            user = "root"
-            password = "pass"
+            user = System.getenv("DB_USER") ?: props.getProperty("db.user")
+            password = System.getenv("DB_PASSWORD") ?: props.getProperty("db.password")
             sqlQuery = """
                 SELECT name, year, rank,
                 GROUP_CONCAT (genre) as "genres"
