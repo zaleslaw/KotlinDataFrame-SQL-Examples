@@ -1,5 +1,6 @@
 import java.util.*
 
+
 plugins {
     kotlin("jvm") version "1.8.0"
     id("org.jetbrains.kotlinx.dataframe") version "0.13.1"
@@ -9,6 +10,7 @@ group = "org.jetbrains.kotlinx.dataframe.examples"
 version = "1.0-SNAPSHOT"
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 

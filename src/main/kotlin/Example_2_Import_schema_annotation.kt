@@ -4,6 +4,12 @@
     jdbcOptions = JdbcOptions(USER_NAME, PASSWORD, tableName = TABLE_NAME_DIRECTORS)
 )
 
+/*@file:ImportDataSchema(
+    "NewActors",
+    URL,
+    jdbcOptions = JdbcOptions("DB_USER", "DB_PASSWORD", extractCredFromEnv = true, sqlQuery = ACTORS_IN_LATEST_MOVIES)
+)*/
+
 @file:ImportDataSchema(
     "NewActors",
     URL,
@@ -32,7 +38,7 @@ fun main() {
     val dbConfig = DatabaseConfiguration(URL, USER_NAME, PASSWORD)
 
     // read the table
-    val directors = DataFrame.readSqlTable(dbConfig, TABLE_NAME_DIRECTORS, 1000).cast<Directors>(verify=true)
+    val directors = DataFrame.readSqlTable(dbConfig, TABLE_NAME_DIRECTORS, 1000).cast<Directors>()
 
     // manipulate and print
     directors.filter { firstName != null && firstName!!.contains("A") }
@@ -42,7 +48,7 @@ fun main() {
     // Part 2: Handle the table results of an SQL query
 
     // read the data
-    val newActors = DataFrame.readSqlQuery(dbConfig, ACTORS_IN_LATEST_MOVIES).cast<NewActors>(verify=true)
+    val newActors = DataFrame.readSqlQuery(dbConfig, ACTORS_IN_LATEST_MOVIES).cast<NewActors>()
     newActors.print()
 
     // build a report of different roles' popularity
