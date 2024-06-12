@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    implementation ("org.jetbrains.kotlinx:dataframe:0.13.1")
+    implementation ("org.jetbrains.kotlinx:dataframe:0.14.0-dev")
     implementation ("org.jetbrains.kotlinx:kandy-lets-plot:0.6.0")
     implementation ("org.jetbrains.kotlinx:kandy-api:0.6.0")
     implementation ("org.mariadb.jdbc:mariadb-java-client:3.1.4")

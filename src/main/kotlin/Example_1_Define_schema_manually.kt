@@ -14,8 +14,8 @@ import org.jetbrains.kotlinx.dataframe.io.DatabaseConfiguration
 @DataSchema
 interface Movies {
     val id: Int
-    val name: String?
-    val year: Int?
+    val name: String
+    val year: Int
     val rank: Float?
 }
 

@@ -40,7 +40,8 @@ fun main() {
     println("---------------------------- Part 1: SQL Table ------------------------------------")
     DriverManager.getConnection(URL, props).use { connection ->
         // read the data from the SQL table
-        val actors = DataFrame.readSqlTable(connection,  TABLE_NAME_ACTORS, 100).cast<Actors>(verify=true)
+        val actors = DataFrame.readSqlTable(connection,  TABLE_NAME_ACTORS, 100).cast<Actors>()
+        // TODO: .cast<Actors>(verify=true)
         actors.print()
 
         // filter and print the data
@@ -55,7 +56,8 @@ fun main() {
     println("---------------------------- Part 2: SQL Query ------------------------------------")
     DriverManager.getConnection(URL, props).use { connection ->
         // read the data from as a result of an executed SQL query
-        val tarantinoFilms = DataFrame.readSqlQuery(connection, TARANTINO_FILMS_SQL_QUERY, 100).cast<TarantinoFilms>(verify=true)
+        val tarantinoFilms = DataFrame.readSqlQuery(connection, TARANTINO_FILMS_SQL_QUERY, 100).cast<TarantinoFilms>()
+        //TODO: .cast<TarantinoFilms>(verify=true)
         tarantinoFilms.print()
 
         // transform and print the data
@@ -72,7 +74,8 @@ fun main() {
         connection.createStatement().use { st ->
             st.executeQuery(TARANTINO_FILMS_SQL_QUERY).use { rs ->
                 // read the data from as a result of an executed SQL query
-                val tarantinoFilms = DataFrame.readResultSet(rs, connection, 100).cast<TarantinoFilms>(verify=true)
+                val tarantinoFilms = DataFrame.readResultSet(rs, connection, 100).cast<TarantinoFilms>()
+                // TODO: .cast<TarantinoFilms>(verify=true)
                 tarantinoFilms.print()
 
                 // transform and print the data
@@ -89,7 +92,7 @@ fun main() {
     // with an explicit announcement of the Connection object from the JDBC driver.
     println("---------------------------- Part 4: readAllSqlTables ------------------------------------")
     DriverManager.getConnection(URL, props).use { connection ->
-        val dataFrames = DataFrame.readAllSqlTables(connection, limit = 100)
+        val dataFrames = DataFrame.readAllSqlTables(connection, limit = 100).values
         dataFrames.forEach {
             it.print()
             it.describe()
