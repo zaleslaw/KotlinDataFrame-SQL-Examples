@@ -19,6 +19,8 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kandy-lets-plot:0.6.0")
     implementation ("org.jetbrains.kotlinx:kandy-api:0.6.0")
     implementation ("org.mariadb.jdbc:mariadb-java-client:3.1.4")
+    implementation("org.hsqldb:hsqldb:2.7.3")
+
     testImplementation(kotlin("test"))
 }
 

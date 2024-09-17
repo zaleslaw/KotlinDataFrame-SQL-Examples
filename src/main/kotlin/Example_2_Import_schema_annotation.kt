@@ -29,13 +29,13 @@ import org.jetbrains.kotlinx.dataframe.api.count
 import org.jetbrains.kotlinx.dataframe.io.readSqlQuery
 import org.jetbrains.kotlinx.dataframe.io.readSqlTable
 import org.jetbrains.kotlinx.dataframe.api.take
-import org.jetbrains.kotlinx.dataframe.io.DatabaseConfiguration
+import org.jetbrains.kotlinx.dataframe.io.DbConnectionConfig
 
 fun main() {
     // Part 1: Reading the table `directors`
 
     // define the database configuration
-    val dbConfig = DatabaseConfiguration(URL, USER_NAME, PASSWORD)
+    val dbConfig = DbConnectionConfig(URL, USER_NAME, PASSWORD)
 
     // read the table
     val directors = DataFrame.readSqlTable(dbConfig, TABLE_NAME_DIRECTORS, 1000).cast<Directors>()

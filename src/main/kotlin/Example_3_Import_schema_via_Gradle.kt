@@ -41,6 +41,7 @@ fun main() {
     DriverManager.getConnection(URL, props).use { connection ->
         // read the data from the SQL table
         val actors = DataFrame.readSqlTable(connection,  TABLE_NAME_ACTORS, 100).cast<Actors>()
+
         // TODO: .cast<Actors>(verify=true)
         actors.print()
 
@@ -77,7 +78,6 @@ fun main() {
                 val tarantinoFilms = DataFrame.readResultSet(rs, connection, 100).cast<TarantinoFilms>()
                 // TODO: .cast<TarantinoFilms>(verify=true)
                 tarantinoFilms.print()
-
                 // transform and print the data
                 tarantinoFilms.filter { year!= null && year!! > 2000 }.print()
 
