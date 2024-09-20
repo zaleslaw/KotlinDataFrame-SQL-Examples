@@ -1,4 +1,4 @@
-package org.jetbrains.kotlinx.dataframe.examples.jdbc
+package customdb
 
 import org.jetbrains.kotlinx.dataframe.io.TableColumnMetadata
 import org.jetbrains.kotlinx.dataframe.io.TableMetadata
@@ -7,7 +7,6 @@ import org.jetbrains.kotlinx.dataframe.schema.ColumnSchema
 import java.sql.ResultSet
 import java.util.Locale
 import kotlin.reflect.KType
-import kotlin.reflect.full.createType
 
 /**
  * Represents the HSQLDB database type.
