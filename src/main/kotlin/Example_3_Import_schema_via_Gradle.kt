@@ -7,13 +7,7 @@ import org.jetbrains.kotlinx.dataframe.api.cast
 import org.jetbrains.kotlinx.dataframe.api.describe
 import org.jetbrains.kotlinx.dataframe.api.filter
 import org.jetbrains.kotlinx.dataframe.api.print
-import org.jetbrains.kotlinx.dataframe.io.getSchemaForResultSet
-import org.jetbrains.kotlinx.dataframe.io.getSchemaForSqlQuery
-import org.jetbrains.kotlinx.dataframe.io.getSchemaForSqlTable
-import org.jetbrains.kotlinx.dataframe.io.readAllSqlTables
-import org.jetbrains.kotlinx.dataframe.io.readResultSet
-import org.jetbrains.kotlinx.dataframe.io.readSqlQuery
-import org.jetbrains.kotlinx.dataframe.io.readSqlTable
+import org.jetbrains.kotlinx.dataframe.io.*
 
 /**
  * For this example, the schema importing was configured in Gradle in the
@@ -40,7 +34,7 @@ fun main() {
     println("---------------------------- Part 1: SQL Table ------------------------------------")
     DriverManager.getConnection(URL, props).use { connection ->
         // read the data from the SQL table
-        val actors = DataFrame.readSqlTable(connection,  TABLE_NAME_ACTORS, 100).cast<Actors>(verify=true)
+        val actors = DataFrame.readSqlTable(connection,  TABLE_NAME_ACTORS, 100).cast<Actors>()
         actors.print()
 
         // filter and print the data
@@ -55,7 +49,8 @@ fun main() {
     println("---------------------------- Part 2: SQL Query ------------------------------------")
     DriverManager.getConnection(URL, props).use { connection ->
         // read the data from as a result of an executed SQL query
-        val tarantinoFilms = DataFrame.readSqlQuery(connection, TARANTINO_FILMS_SQL_QUERY, 100).cast<TarantinoFilms>(verify=true)
+        // example of extension function usage
+        val tarantinoFilms = connection.readDataFrame(TARANTINO_FILMS_SQL_QUERY, 100).cast<TarantinoFilms>()
         tarantinoFilms.print()
 
         // transform and print the data
@@ -72,7 +67,7 @@ fun main() {
         connection.createStatement().use { st ->
             st.executeQuery(TARANTINO_FILMS_SQL_QUERY).use { rs ->
                 // read the data from as a result of an executed SQL query
-                val tarantinoFilms = DataFrame.readResultSet(rs, connection, 100).cast<TarantinoFilms>(verify=true)
+                val tarantinoFilms = DataFrame.readResultSet(rs, connection, 100).cast<TarantinoFilms>()
                 tarantinoFilms.print()
 
                 // transform and print the data
@@ -89,7 +84,7 @@ fun main() {
     // with an explicit announcement of the Connection object from the JDBC driver.
     println("---------------------------- Part 4: readAllSqlTables ------------------------------------")
     DriverManager.getConnection(URL, props).use { connection ->
-        val dataFrames = DataFrame.readAllSqlTables(connection, limit = 100)
+        val dataFrames = DataFrame.readAllSqlTables(connection, limit = 100).values
         dataFrames.forEach {
             it.print()
             it.describe()

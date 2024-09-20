@@ -9,19 +9,20 @@ import org.jetbrains.kotlinx.dataframe.api.sortByDesc
 import org.jetbrains.kotlinx.dataframe.api.print
 import org.jetbrains.kotlinx.dataframe.api.take
 import org.jetbrains.kotlinx.dataframe.io.readSqlTable
-import org.jetbrains.kotlinx.dataframe.io.DatabaseConfiguration
+import org.jetbrains.kotlinx.dataframe.io.DbConnectionConfig
+import org.jetbrains.kotlinx.dataframe.io.readDataFrame
 
 @DataSchema
 interface Movies {
     val id: Int
-    val name: String?
-    val year: Int?
+    val name: String
+    val year: Int
     val rank: Float?
 }
 
 fun main() {
     // define the database configuration
-    val dbConfig = DatabaseConfiguration(URL, USER_NAME, PASSWORD)
+    val dbConfig = DbConnectionConfig(URL, USER_NAME, PASSWORD)
 
     // read the table
     val movies = DataFrame.readSqlTable(dbConfig, TABLE_NAME_MOVIES, 10000).cast<Movies>(verify=true)
