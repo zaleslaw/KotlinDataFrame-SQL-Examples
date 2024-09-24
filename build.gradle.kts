@@ -1,8 +1,8 @@
 import java.util.*
 
 plugins {
-    kotlin("jvm") version "1.8.0"
-    id("org.jetbrains.kotlinx.dataframe") version "0.13.1"
+    kotlin("jvm") version "2.0.0"
+    id("org.jetbrains.kotlinx.dataframe") version "0.14.0"
 }
 
 group = "org.jetbrains.kotlinx.dataframe.examples"
@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    implementation ("org.jetbrains.kotlinx:dataframe:0.14.0-RC2")
+    implementation ("org.jetbrains.kotlinx:dataframe:0.14.0")
     implementation ("org.jetbrains.kotlinx:kandy-lets-plot:0.7.0")
     implementation ("org.jetbrains.kotlinx:kandy-api:0.7.0")
     implementation ("org.mariadb.jdbc:mariadb-java-client:3.1.4")
@@ -26,7 +26,7 @@ file("local.properties").inputStream().use { props.load(it) }
 
 dataframes {
     schema {
-        data = "jdbc:mariadb://localhost:3307/imdb"
+        data = "jdbc:mariadb://localhost:3306/imdb"
         name = "org.jetbrains.kotlinx.dataframe.examples.jdbc.Actors"
         jdbcOptions {
             user = props.getProperty("db.user")
@@ -35,7 +35,7 @@ dataframes {
         }
     }
     schema {
-        data = "jdbc:mariadb://localhost:3307/imdb"
+        data = "jdbc:mariadb://localhost:3306/imdb"
         name = "org.jetbrains.kotlinx.dataframe.examples.jdbc.TarantinoFilms"
         jdbcOptions {
             user = System.getenv("DB_USER") ?: props.getProperty("db.user")
