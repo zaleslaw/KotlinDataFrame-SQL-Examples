@@ -1,7 +1,7 @@
 import java.util.*
 
 plugins {
-    kotlin("jvm") version "2.0.0"
+    kotlin("jvm") version "2.0.20"
     id("org.jetbrains.kotlinx.dataframe") version "0.14.1"
 }
 
@@ -10,6 +10,7 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev/")
 }
 
 dependencies {
@@ -17,16 +18,16 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kandy-lets-plot:0.7.0")
     implementation ("org.jetbrains.kotlinx:kandy-api:0.7.0")
     implementation ("org.mariadb.jdbc:mariadb-java-client:3.1.4")
+    kotlinCompilerPluginClasspath("org.jetbrains.kotlinx.dataframe:compiler-plugin-all:0.14.1")
     testImplementation(kotlin("test"))
 }
-
 
 val props = Properties()
 file("local.properties").inputStream().use { props.load(it) }
 
 dataframes {
     schema {
-        data = "jdbc:mariadb://localhost:3306/imdb"
+        data = "jdbc:mariadb://localhost:3307/imdb"
         name = "org.jetbrains.kotlinx.dataframe.examples.jdbc.Actors"
         jdbcOptions {
             user = props.getProperty("db.user")
@@ -35,7 +36,7 @@ dataframes {
         }
     }
     schema {
-        data = "jdbc:mariadb://localhost:3306/imdb"
+        data = "jdbc:mariadb://localhost:3307/imdb"
         name = "org.jetbrains.kotlinx.dataframe.examples.jdbc.TarantinoFilms"
         jdbcOptions {
             user = System.getenv("DB_USER") ?: props.getProperty("db.user")
@@ -58,4 +59,12 @@ tasks.test {
 }
 kotlin {
     jvmToolchain(11)
+}
+
+tasks.compileKotlin {
+    compilerOptions {
+        freeCompilerArgs.addAll("-P", "plugin:org.jetbrains.kotlinx.dataframe:path=${projectDir.absolutePath}")
+        freeCompilerArgs.addAll("-P", "plugin:org.jetbrains.kotlinx.dataframe:schemas=${layout.buildDirectory.file("generated").get().asFile.absolutePath}")
+    }
+    compilerExecutionStrategy.set(org.jetbrains.kotlin.gradle.tasks.KotlinCompilerExecutionStrategy.IN_PROCESS)
 }

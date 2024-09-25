@@ -1,16 +1,19 @@
-package org.jetbrains.kotlinx.dataframe.examples.jdbc
-
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.annotations.DataSchema
+import org.jetbrains.kotlinx.dataframe.api.add
 import org.jetbrains.kotlinx.dataframe.api.describe
 import org.jetbrains.kotlinx.dataframe.api.select
 import org.jetbrains.kotlinx.dataframe.api.cast
+import org.jetbrains.kotlinx.dataframe.api.filter
 import org.jetbrains.kotlinx.dataframe.api.sortByDesc
 import org.jetbrains.kotlinx.dataframe.api.print
 import org.jetbrains.kotlinx.dataframe.api.take
+import org.jetbrains.kotlinx.dataframe.examples.jdbc.PASSWORD
+import org.jetbrains.kotlinx.dataframe.examples.jdbc.TABLE_NAME_MOVIES
+import org.jetbrains.kotlinx.dataframe.examples.jdbc.URL
+import org.jetbrains.kotlinx.dataframe.examples.jdbc.USER_NAME
 import org.jetbrains.kotlinx.dataframe.io.readSqlTable
 import org.jetbrains.kotlinx.dataframe.io.DbConnectionConfig
-import org.jetbrains.kotlinx.dataframe.io.readDataFrame
 
 @DataSchema
 interface Movies {
@@ -34,8 +37,10 @@ fun main() {
     movies.describe().print()
 
     // print names of top-10 rated films
-    movies.sortByDesc { rank }
-        .take(10)
-        .select { name }
-        .print()
+    val result = movies.sortByDesc { rank }
+        .select { name and year }
+        .add("oldFilm") { year < 1973 }
+        .add("containsReward") { name.contains("Reward") }
+
+    result.filter { oldFilm and containsReward }.take(10).print()
 }
