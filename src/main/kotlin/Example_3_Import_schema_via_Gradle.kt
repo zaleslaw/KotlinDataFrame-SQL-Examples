@@ -1,5 +1,3 @@
-package org.jetbrains.kotlinx.dataframe.examples.jdbc
-
 import java.sql.DriverManager
 import java.util.Properties
 import org.jetbrains.kotlinx.dataframe.DataFrame
@@ -7,6 +5,13 @@ import org.jetbrains.kotlinx.dataframe.api.cast
 import org.jetbrains.kotlinx.dataframe.api.describe
 import org.jetbrains.kotlinx.dataframe.api.filter
 import org.jetbrains.kotlinx.dataframe.api.print
+import org.jetbrains.kotlinx.dataframe.examples.jdbc.Actors
+import org.jetbrains.kotlinx.dataframe.examples.jdbc.PASSWORD
+import org.jetbrains.kotlinx.dataframe.examples.jdbc.TABLE_NAME_ACTORS
+import org.jetbrains.kotlinx.dataframe.examples.jdbc.TARANTINO_FILMS_SQL_QUERY
+import org.jetbrains.kotlinx.dataframe.examples.jdbc.TarantinoFilms
+import org.jetbrains.kotlinx.dataframe.examples.jdbc.URL
+import org.jetbrains.kotlinx.dataframe.examples.jdbc.USER_NAME
 import org.jetbrains.kotlinx.dataframe.io.*
 
 /**
@@ -26,7 +31,7 @@ import org.jetbrains.kotlinx.dataframe.io.*
  * and demonstrate different ways to establish connection to the database.
  */
 fun main() {
-    val props = Properties()
+    /*val props = Properties()
     props.setProperty("user", USER_NAME)
     props.setProperty("password", PASSWORD)
 
@@ -34,14 +39,14 @@ fun main() {
     println("---------------------------- Part 1: SQL Table ------------------------------------")
     DriverManager.getConnection(URL, props).use { connection ->
         // read the data from the SQL table
-        val actors = DataFrame.readSqlTable(connection,  TABLE_NAME_ACTORS, 100).cast<Actors>()
+        val actors = DataFrame.readSqlTable(connection, TABLE_NAME_ACTORS, 100).cast<Actors>()
         actors.print()
 
         // filter and print the data
         actors.filter { firstName!=null && firstName!!.contains("J") }.print()
 
         // extract the schema of the SQL table
-        val actorSchema = DataFrame.getSchemaForSqlTable(connection,  TABLE_NAME_ACTORS)
+        val actorSchema = DataFrame.getSchemaForSqlTable(connection, TABLE_NAME_ACTORS)
         actorSchema.print()
     }
 
@@ -89,5 +94,5 @@ fun main() {
             it.print()
             it.describe()
         }
-    }
+    }*/
 }
