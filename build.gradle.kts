@@ -3,7 +3,7 @@ import java.util.*
 
 plugins {
     kotlin("jvm") version "1.8.0"
-    id("org.jetbrains.kotlinx.dataframe") version "0.14.0-dev"
+    id("org.jetbrains.kotlinx.dataframe") version "0.15.0-dev"
 }
 
 group = "org.jetbrains.kotlinx.dataframe.examples"
@@ -16,11 +16,11 @@ repositories {
 
 dependencies {
     implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.8.0")
-    implementation ("org.jetbrains.kotlinx:dataframe:0.14.0-dev")
-    implementation ("org.jetbrains.kotlinx:kandy-lets-plot:0.6.0")
-    implementation ("org.jetbrains.kotlinx:kandy-api:0.6.0")
+    implementation ("org.jetbrains.kotlinx:dataframe:0.15.0-dev")
+    implementation ("org.jetbrains.kotlinx:kandy-lets-plot:0.7.1")
+    implementation ("org.jetbrains.kotlinx:kandy-api:0.7.1")
     implementation ("org.mariadb.jdbc:mariadb-java-client:3.1.4")
-    implementation("org.hsqldb:hsqldb:2.7.3")
+    implementation ("org.hsqldb:hsqldb:2.7.3")
 
     testImplementation(kotlin("test"))
 }

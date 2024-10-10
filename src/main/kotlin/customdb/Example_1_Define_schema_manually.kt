@@ -18,6 +18,7 @@ interface Orders {
 }
 
 //https://www.tutorialspoint.com/hsqldb/hsqldb_quick_guide.htm
+// CMD> java -classpath lib/hsqldb.jar org.hsqldb.server.Server --database.0 file:hsqldb/demodb --dbname.0 testdb
 fun main() {
     DriverManager.getConnection(URL, USER_NAME, PASSWORD).use { con ->
         createAndPopulateTable(con)
