@@ -1,4 +1,4 @@
-package org.jetbrains.kotlinx.dataframe.examples.jdbc.customdb
+package customdb
 
 import java.sql.Connection
 

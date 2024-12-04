@@ -2,8 +2,8 @@ import java.util.*
 
 
 plugins {
-    kotlin("jvm") version "1.8.0"
-    id("org.jetbrains.kotlinx.dataframe") version "0.15.0-dev"
+    kotlin("jvm") version "1.9.21"
+    id("org.jetbrains.kotlinx.dataframe") version "0.15.0-RC2"
 }
 
 group = "org.jetbrains.kotlinx.dataframe.examples"
@@ -15,8 +15,8 @@ repositories {
 }
 
 dependencies {
-    implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.8.0")
-    implementation ("org.jetbrains.kotlinx:dataframe:0.15.0-dev")
+    implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.9.21")
+    implementation ("org.jetbrains.kotlinx:dataframe:0.15.0-RC2")
     implementation ("org.jetbrains.kotlinx:kandy-lets-plot:0.7.1")
     implementation ("org.jetbrains.kotlinx:kandy-api:0.7.1")
     implementation ("org.mariadb.jdbc:mariadb-java-client:3.1.4")

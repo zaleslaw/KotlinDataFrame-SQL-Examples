@@ -1,6 +1,5 @@
-package org.jetbrains.kotlinx.dataframe.examples.jdbc.customdb
+package customdb
 
-import customdb.HSQLDB
 import org.jetbrains.kotlinx.dataframe.annotations.DataSchema
 import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.dataframe.impl.DELIMITERS_REGEX
@@ -25,8 +24,8 @@ fun main() {
 
         val df = con.readDataFrame("SELECT * FROM orders", dbType = HSQLDB).rename {
             all()
-        }.into { it.name.lowercase(Locale.getDefault()).toCamelCaseByDelimiters(DELIMITERS_REGEX)}
-            .cast<Orders>(verify=true)
+        }.into { it.name.lowercase(Locale.getDefault()).toCamelCaseByDelimiters(DELIMITERS_REGEX) }
+            .cast<Orders>(verify = true)
 
         df.filter { it.price > 800 }.print()
 
