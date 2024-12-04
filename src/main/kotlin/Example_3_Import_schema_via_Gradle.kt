@@ -7,7 +7,15 @@ import org.jetbrains.kotlinx.dataframe.api.cast
 import org.jetbrains.kotlinx.dataframe.api.describe
 import org.jetbrains.kotlinx.dataframe.api.filter
 import org.jetbrains.kotlinx.dataframe.api.print
-import org.jetbrains.kotlinx.dataframe.io.*
+import org.jetbrains.kotlinx.dataframe.io.db.DbType
+import org.jetbrains.kotlinx.dataframe.io.db.MySql
+import org.jetbrains.kotlinx.dataframe.io.getSchemaForResultSet
+import org.jetbrains.kotlinx.dataframe.io.getSchemaForSqlQuery
+import org.jetbrains.kotlinx.dataframe.io.getSchemaForSqlTable
+import org.jetbrains.kotlinx.dataframe.io.readAllSqlTables
+import org.jetbrains.kotlinx.dataframe.io.readResultSet
+import org.jetbrains.kotlinx.dataframe.io.readSqlQuery
+import org.jetbrains.kotlinx.dataframe.io.readSqlTable
 
 /**
  * For this example, the schema importing was configured in Gradle in the
@@ -34,14 +42,16 @@ fun main() {
     println("---------------------------- Part 1: SQL Table ------------------------------------")
     DriverManager.getConnection(URL, props).use { connection ->
         // read the data from the SQL table
-        val actors = DataFrame.readSqlTable(connection,  TABLE_NAME_ACTORS, 100).cast<Actors>()
+        val actors = DataFrame.readSqlTable(connection, TABLE_NAME_ACTORS, 100).cast<Actors>()
+
+        // TODO: .cast<Actors>(verify=true)
         actors.print()
 
         // filter and print the data
         actors.filter { firstName!=null && firstName!!.contains("J") }.print()
 
         // extract the schema of the SQL table
-        val actorSchema = DataFrame.getSchemaForSqlTable(connection,  TABLE_NAME_ACTORS)
+        val actorSchema = DataFrame.getSchemaForSqlTable(connection, TABLE_NAME_ACTORS)
         actorSchema.print()
     }
 
@@ -49,8 +59,8 @@ fun main() {
     println("---------------------------- Part 2: SQL Query ------------------------------------")
     DriverManager.getConnection(URL, props).use { connection ->
         // read the data from as a result of an executed SQL query
-        // example of extension function usage
-        val tarantinoFilms = connection.readDataFrame(TARANTINO_FILMS_SQL_QUERY, 100).cast<TarantinoFilms>()
+        val tarantinoFilms = DataFrame.readSqlQuery(connection, TARANTINO_FILMS_SQL_QUERY, 100).cast<TarantinoFilms>()
+        //TODO: .cast<TarantinoFilms>(verify=true)
         tarantinoFilms.print()
 
         // transform and print the data
@@ -67,14 +77,14 @@ fun main() {
         connection.createStatement().use { st ->
             st.executeQuery(TARANTINO_FILMS_SQL_QUERY).use { rs ->
                 // read the data from as a result of an executed SQL query
-                val tarantinoFilms = DataFrame.readResultSet(rs, connection, 100).cast<TarantinoFilms>()
+                val tarantinoFilms = DataFrame.readResultSet(rs, dbType = MySql, 100).cast<TarantinoFilms>()
+                // TODO: .cast<TarantinoFilms>(verify=true)
                 tarantinoFilms.print()
-
                 // transform and print the data
                 tarantinoFilms.filter { year!= null && year!! > 2000 }.print()
 
                 // extract the schema of the SQL table
-                val tarantinoFilmsSchema = DataFrame.getSchemaForResultSet(rs, connection)
+                val tarantinoFilmsSchema = DataFrame.getSchemaForResultSet(rs, dbType = MySql)
                 tarantinoFilmsSchema.print()
             }
         }
