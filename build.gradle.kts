@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    implementation ("org.jetbrains.kotlinx:dataframe: 1.0.0-Beta2")
+    implementation ("org.jetbrains.kotlinx:dataframe:1.0.0-Beta2")
     implementation ("org.jetbrains.kotlinx:kandy-lets-plot:0.8.1-dev-67")
     implementation ("org.jetbrains.kotlinx:kandy-api:0.8.1-dev-67")
     implementation ("org.mariadb.jdbc:mariadb-java-client:3.5.4")
@@ -21,7 +21,6 @@ dependencies {
 
     testImplementation(kotlin("test"))
 }
-
 
 val props = Properties()
 file("local.properties").inputStream().use { props.load(it) }
