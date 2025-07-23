@@ -2,7 +2,7 @@ import java.util.*
 
 plugins {
     kotlin("jvm") version "2.0.0"
-    id("org.jetbrains.kotlinx.dataframe") version "0.15.0-RC3"
+    id("org.jetbrains.kotlinx.dataframe") version "1.0.0-Beta2"
 }
 
 group = "org.jetbrains.kotlinx.dataframe.examples"
@@ -13,15 +13,14 @@ repositories {
 }
 
 dependencies {
-    implementation ("org.jetbrains.kotlinx:dataframe:0.15.0-RC3")
-    implementation ("org.jetbrains.kotlinx:kandy-lets-plot:0.7.1")
-    implementation ("org.jetbrains.kotlinx:kandy-api:0.7.1")
-    implementation ("org.mariadb.jdbc:mariadb-java-client:3.1.4")
-    implementation ("org.hsqldb:hsqldb:2.7.3")
+    implementation ("org.jetbrains.kotlinx:dataframe:1.0.0-Beta2")
+    implementation ("org.jetbrains.kotlinx:kandy-lets-plot:0.8.1-dev-67")
+    implementation ("org.jetbrains.kotlinx:kandy-api:0.8.1-dev-67")
+    implementation ("org.mariadb.jdbc:mariadb-java-client:3.5.4")
+    implementation ("org.hsqldb:hsqldb:2.7.4")
 
     testImplementation(kotlin("test"))
 }
-
 
 val props = Properties()
 file("local.properties").inputStream().use { props.load(it) }

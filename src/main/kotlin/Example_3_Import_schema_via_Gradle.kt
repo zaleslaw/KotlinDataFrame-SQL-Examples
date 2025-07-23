@@ -7,7 +7,6 @@ import org.jetbrains.kotlinx.dataframe.api.cast
 import org.jetbrains.kotlinx.dataframe.api.describe
 import org.jetbrains.kotlinx.dataframe.api.filter
 import org.jetbrains.kotlinx.dataframe.api.print
-import org.jetbrains.kotlinx.dataframe.io.db.DbType
 import org.jetbrains.kotlinx.dataframe.io.db.MySql
 import org.jetbrains.kotlinx.dataframe.io.getSchemaForResultSet
 import org.jetbrains.kotlinx.dataframe.io.getSchemaForSqlQuery
