@@ -25,7 +25,8 @@ fun main() {
     val dbConfig = DbConnectionConfig(URL, USER_NAME, PASSWORD)
 
     // read the table
-    val movies = DataFrame.readSqlTable(dbConfig, TABLE_NAME_MOVIES, 10000).cast<Movies>(verify=true)
+    val movies = DataFrame.readSqlTable(dbConfig, TABLE_NAME_MOVIES, 10000)
+        .cast<Movies>(verify=true)
 
     // print the dataframe
     movies.print()
@@ -36,8 +37,9 @@ fun main() {
     print(movies.generateInterfaces("Movies"))
 
     // print names of top-10 rated films
-    /*movies.sortByDesc { rank }
+    movies
+    //.sortByDesc { rank }
         .take(10)
         .select { name }
-        .print()*/
+        .print()
 }
