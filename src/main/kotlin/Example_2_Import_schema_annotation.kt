@@ -1,4 +1,4 @@
-@file:ImportDataSchema(
+/*@file:ImportDataSchema(
     "Directors",
     URL,
     jdbcOptions = JdbcOptions(USER_NAME, PASSWORD, tableName = TABLE_NAME_DIRECTORS)
@@ -49,4 +49,4 @@ fun main() {
     newActors.groupBy { role }
         .count()
         .print()
-}
+}*/

@@ -1,4 +1,4 @@
-package org.jetbrains.kotlinx.dataframe.examples.jdbc
+/*package org.jetbrains.kotlinx.dataframe.examples.jdbc
 
 import java.sql.DriverManager
 import java.util.Properties
@@ -99,4 +99,4 @@ fun main() {
             it.describe()
         }
     }
-}
+}*/

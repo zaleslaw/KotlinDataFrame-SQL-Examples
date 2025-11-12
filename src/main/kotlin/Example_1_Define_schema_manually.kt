@@ -8,6 +8,7 @@ import org.jetbrains.kotlinx.dataframe.api.cast
 import org.jetbrains.kotlinx.dataframe.api.sortByDesc
 import org.jetbrains.kotlinx.dataframe.api.print
 import org.jetbrains.kotlinx.dataframe.api.take
+import org.jetbrains.kotlinx.dataframe.api.generateInterfaces
 import org.jetbrains.kotlinx.dataframe.io.readSqlTable
 import org.jetbrains.kotlinx.dataframe.io.DbConnectionConfig
 
@@ -15,8 +16,8 @@ import org.jetbrains.kotlinx.dataframe.io.DbConnectionConfig
 interface Movies {
     val id: Int
     val name: String
-    val year: Int
     val rank: Float?
+    val year: Int
 }
 
 fun main() {
@@ -32,9 +33,11 @@ fun main() {
     // print the dataframe metadata and statistics
     movies.describe().print()
 
+    print(movies.generateInterfaces("Movies"))
+
     // print names of top-10 rated films
-    movies.sortByDesc { rank }
+    /*movies.sortByDesc { rank }
         .take(10)
         .select { name }
-        .print()
+        .print()*/
 }
