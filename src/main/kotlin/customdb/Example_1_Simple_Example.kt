@@ -25,7 +25,7 @@ fun main() {
             .renameToCamelCase()
             .cast<Orders>(verify = true)
 
-        df.filter { it.price > 800 }.print()
+       // df.filter { it.price > 800 }.print()
 
         removeTable(con)
     }
