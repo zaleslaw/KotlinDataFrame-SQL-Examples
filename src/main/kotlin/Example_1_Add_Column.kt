@@ -48,13 +48,12 @@ fun main() {
         .select { name }
         .print()
 
-    val result = movies
+    // add columns to the dataframe on-the-fly
+    movies
         .sortByDesc { rank }
         .select { name and year }
         .add("oldFilm") { year < 1973 }
         .add("containsReward") { name.contains("Reward") }
-
-    result
         .filter { oldFilm and containsReward }
         .take(10)
         .print()
