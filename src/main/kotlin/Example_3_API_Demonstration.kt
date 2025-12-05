@@ -10,13 +10,11 @@ import org.jetbrains.kotlinx.dataframe.api.filter
 import org.jetbrains.kotlinx.dataframe.api.generateInterfaces
 import org.jetbrains.kotlinx.dataframe.api.print
 import org.jetbrains.kotlinx.dataframe.io.db.MySql
-import org.jetbrains.kotlinx.dataframe.io.getSchemaForResultSet
-import org.jetbrains.kotlinx.dataframe.io.getSchemaForSqlQuery
-import org.jetbrains.kotlinx.dataframe.io.getSchemaForSqlTable
 import org.jetbrains.kotlinx.dataframe.io.readAllSqlTables
 import org.jetbrains.kotlinx.dataframe.io.readResultSet
 import org.jetbrains.kotlinx.dataframe.io.readSqlQuery
 import org.jetbrains.kotlinx.dataframe.io.readSqlTable
+import org.jetbrains.kotlinx.dataframe.schema.DataFrameSchema
 
 @DataSchema
 interface TarantinoFilms {
@@ -42,7 +40,7 @@ fun main() {
         actors.filter { firstName.contains("J") }.print()
 
         // extract the schema of the SQL table
-        val actorSchema = DataFrame.getSchemaForSqlTable(connection, TABLE_NAME_ACTORS)
+        val actorSchema = DataFrameSchema.readSqlTable(connection, TABLE_NAME_ACTORS)
         actorSchema.print()
     }
 
@@ -61,7 +59,7 @@ fun main() {
         tarantinoFilms.filter { year > 2000 }.print()
 
         // extract the schema of the SQL table
-        val tarantinoFilmsSchema = DataFrame.getSchemaForSqlQuery(connection, TARANTINO_FILMS_SQL_QUERY)
+        val tarantinoFilmsSchema = DataFrameSchema.readSqlQuery(connection, TARANTINO_FILMS_SQL_QUERY)
         tarantinoFilmsSchema.print()
     }
 
@@ -78,7 +76,7 @@ fun main() {
                 tarantinoFilms.filter { year > 2000 }.print()
 
                 // extract the schema of the SQL table
-                val tarantinoFilmsSchema = DataFrame.getSchemaForResultSet(rs, dbType = MySql)
+                val tarantinoFilmsSchema = DataFrameSchema.readResultSet(rs, dbType = MySql)
                 tarantinoFilmsSchema.print()
             }
         }
