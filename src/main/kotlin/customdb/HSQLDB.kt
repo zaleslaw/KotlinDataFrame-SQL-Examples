@@ -1,12 +1,12 @@
 package org.jetbrains.kotlinx.dataframe.examples.jdbc.customdb
 
-/*import org.jetbrains.kotlinx.dataframe.io.TableColumnMetadata
-import org.jetbrains.kotlinx.dataframe.io.TableMetadata
 import org.jetbrains.kotlinx.dataframe.io.db.DbType
+import org.jetbrains.kotlinx.dataframe.io.db.TableColumnMetadata
+import org.jetbrains.kotlinx.dataframe.io.db.TableMetadata
 import org.jetbrains.kotlinx.dataframe.schema.ColumnSchema
 import java.sql.ResultSet
 import java.util.Locale
-import kotlin.reflect.KType*/
+import kotlin.reflect.KType
 
 /**
  * Represents the HSQLDB database type.
@@ -14,7 +14,7 @@ import kotlin.reflect.KType*/
  * This class provides methods to convert data from a ResultSet to the appropriate type for HSQLDB,
  * and to generate the corresponding column schema.
  */
-/*public object HSQLDB : DbType("hsqldb") {
+public object HSQLDB : DbType("hsqldb") {
     override val driverClassName: String
         get() = "org.hsqldb.jdbcDriver"
 
@@ -43,4 +43,3 @@ import kotlin.reflect.KType*/
         return null
     }
 }
-*/
