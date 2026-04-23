@@ -1,20 +1,16 @@
 package org.jetbrains.kotlinx.dataframe.examples.jdbc
 
-import java.sql.DriverManager
-import java.util.Properties
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.annotations.DataSchema
-import org.jetbrains.kotlinx.dataframe.api.cast
-import org.jetbrains.kotlinx.dataframe.api.describe
-import org.jetbrains.kotlinx.dataframe.api.filter
-import org.jetbrains.kotlinx.dataframe.api.generateInterfaces
-import org.jetbrains.kotlinx.dataframe.api.print
+import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.dataframe.io.db.MySql
 import org.jetbrains.kotlinx.dataframe.io.readAllSqlTables
 import org.jetbrains.kotlinx.dataframe.io.readResultSet
 import org.jetbrains.kotlinx.dataframe.io.readSqlQuery
 import org.jetbrains.kotlinx.dataframe.io.readSqlTable
 import org.jetbrains.kotlinx.dataframe.schema.DataFrameSchema
+import java.sql.DriverManager
+import java.util.*
 
 @DataSchema
 interface TarantinoFilms {
