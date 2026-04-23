@@ -19,7 +19,6 @@ interface Directors {
     @ColumnName("first_name")
     val firstName: String
     val id: Int
-
     @ColumnName("last_name")
     val lastName: String
 }
@@ -28,7 +27,6 @@ interface Directors {
 interface Actors {
     @ColumnName("first_name")
     val firstName: String
-
     @ColumnName("last_name")
     val lastName: String
     val name: String
