@@ -12,9 +12,9 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:dataframe:1.0.0-dev-10212")
-    implementation("org.jetbrains.kotlinx:kandy-lets-plot:0.8.4-dev-96")
-    implementation("org.jetbrains.kotlinx:kandy-api:0.8.4-dev-96")
+    implementation("org.jetbrains.kotlinx:dataframe:1.0.0-Beta5")
+    implementation("org.jetbrains.kotlinx:kandy-lets-plot:0.8.4")
+    implementation("org.jetbrains.kotlinx:kandy-api:0.8.4")
     implementation("org.mariadb.jdbc:mariadb-java-client:3.5.4")
     implementation("org.hsqldb:hsqldb:2.7.4")
 

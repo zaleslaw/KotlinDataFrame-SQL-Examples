@@ -17,7 +17,6 @@ interface Orders {
     val orderDate: LocalDate
 }
 
-
 /**
  * Following https://www.tutorialspoint.com/hsqldb/hsqldb_quick_guide.htm:
  *
