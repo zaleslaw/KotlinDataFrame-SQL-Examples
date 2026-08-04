@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "2.3.20"
-    kotlin("plugin.dataframe") version "2.3.20"
+    kotlin("jvm") version "2.4.20-Beta1"
+    kotlin("plugin.dataframe") version "2.4.20-Beta1"
     application
 }
 
@@ -12,9 +12,9 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:dataframe:1.0.0-Beta5")
-    implementation("org.jetbrains.kotlinx:kandy-lets-plot:0.8.4")
-    implementation("org.jetbrains.kotlinx:kandy-api:0.8.4")
+    implementation("org.jetbrains.kotlinx:dataframe:1.0.0-rc01")
+    implementation("org.jetbrains.kotlinx:kandy-lets-plot:0.8.5")
+    implementation("org.jetbrains.kotlinx:kandy-api:0.8.5")
     implementation("org.mariadb.jdbc:mariadb-java-client:3.5.4")
     implementation("org.hsqldb:hsqldb:2.7.4")
 
